@@ -3,18 +3,14 @@ package com.practice.aravind.wahter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 
-public class RegisterActivity extends Activity{
+public class AddressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-    }
-
-    public void onNext(View v){
-        Intent i = new Intent(getApplicationContext(), AddressActivity.class);
-        startActivity(i);
+        setContentView(R.layout.activity_address);
     }
 }

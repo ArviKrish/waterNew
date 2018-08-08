@@ -24,11 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
-            android:label="Register New Account" />
+            android:name=".PwdActivity"
+            android:label="Password" />
         <activity
             android:name=".RegisterActivity"
             android:label="Register"/>
+        <activity
+            android:name=".AddressActivity"
+            android:label="Address"/>
     </application>
 
 </manifest>

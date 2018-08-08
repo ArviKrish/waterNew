@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLogin(View v) {
         // Switching to Login screen
-        Intent i = new Intent(getApplicationContext(), SignupActivity.class);
+        Intent i = new Intent(getApplicationContext(), PwdActivity.class);
         startActivity(i);
     }
 

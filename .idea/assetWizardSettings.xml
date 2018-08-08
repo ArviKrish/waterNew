@@ -81,9 +81,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="opacityPercent" value="88" />
-                            <entry key="outputName" value="ic_gst_24dp" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../logo/re/email.svg" />
+                            <entry key="outputName" value="ic_password" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../logo/pic/password.svg" />
                           </map>
                         </option>
                       </PersistentState>
