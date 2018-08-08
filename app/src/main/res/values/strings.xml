@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Wahter</string>
+    <string name="company_logo">Business Logo</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to LoginActivity-->
+    <string name="login">login</string>
+
+    <!-- Strings related to validations-->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -10,8 +14,25 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
     </string>
     <string name="title_activity_registration">registration</string>
+
+    <!-- Strings related to RegisterActivity -->
+    <string name="registration">registration</string>
+    <string name="org_name">Organization Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="email_id">Email ID</string>
+    <string name="gst_number">GST Number</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="next_button">Next</string>
+    <string name="address_line1">Address line 1</string>
+    <string name="address_line2">Address line 2</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pincode">Pincode</string>
+    <string name="register">Register</string>
+    <string name="tamil_nadu">Tamil Nadu</string>
+
 </resources>

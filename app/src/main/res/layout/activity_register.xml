@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -13,12 +12,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="registration"
+        android:text="@string/registration"
         android:textColor="@android:color/holo_blue_dark"
         android:textAllCaps="true"
         android:gravity="center"
         android:paddingTop="100dp"
-        android:textSize="30dp"/>
+        android:textSize="30sp" />
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,8 +30,8 @@
             android:layout_gravity="center"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:drawableRight="@drawable/ic_org"
-            android:hint="Organization Name"
+            android:drawableEnd="@drawable/ic_org"
+            android:hint="@string/org_name"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -48,9 +47,9 @@
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="50dp"
-            android:drawableRight="@drawable/ic_mobile"
+            android:drawableEnd="@drawable/ic_mobile"
             android:maxLength="10"
-            android:hint="Mobile Number"
+            android:hint="@string/mobile_number"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -65,8 +64,8 @@
             android:layout_gravity="center"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:drawableRight="@drawable/ic_email"
-            android:hint="Email ID"
+            android:drawableEnd="@drawable/ic_email"
+            android:hint="@string/email_id"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +80,8 @@
             android:layout_gravity="center"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:drawableRight="@drawable/ic_gst_24dp"
-            android:hint="GST Number"
+            android:drawableEnd="@drawable/ic_gst_24dp"
+            android:hint="@string/gst_number"
             android:maxLength="15"
             android:inputType="text"/>
     </android.support.design.widget.TextInputLayout>
@@ -98,8 +97,8 @@
             android:layout_gravity="center"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:drawableRight="@drawable/ic_password"
-            android:hint="Password"
+            android:drawableEnd="@drawable/ic_password"
+            android:hint="@string/password"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -114,8 +113,8 @@
             android:layout_gravity="center"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:drawableRight="@drawable/ic_password"
-            android:hint="Confirm password"
+            android:drawableEnd="@drawable/ic_password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -129,6 +128,6 @@
         android:layout_marginStart="50dp"
         android:background="@android:color/holo_blue_light"
         android:onClick="onNext"
-        android:text="Next" />
+        android:text="@string/next_button" />
 
 </LinearLayout>
