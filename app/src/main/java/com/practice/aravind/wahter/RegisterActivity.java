@@ -14,7 +14,7 @@ public class RegisterActivity extends Activity{
     }
 
     public void onNext(View v){
-        Intent i = new Intent(getApplicationContext(), AddressActivity.class);
+        Intent i = new Intent(getApplicationContext(), UserInfoActivity.class);
         startActivity(i);
     }
 }

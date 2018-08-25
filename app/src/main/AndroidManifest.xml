@@ -27,11 +27,14 @@
             android:name=".RegisterActivity"
             android:label="Register"/>
         <activity
-            android:name=".AddressActivity"
-            android:label="Address"/>
+            android:name=".UserInfoActivity"
+            android:label="UserInfo"/>
         <activity
             android:name=".LoginActivity"
             android:label="Login" />
+        <activity android:name=".BillingInfoActivity"
+            android:label="BillingInfo"/>
+
     </application>
 
 </manifest>
