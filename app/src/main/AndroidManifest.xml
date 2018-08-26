@@ -34,6 +34,8 @@
             android:label="Login" />
         <activity android:name=".BillingInfoActivity"
             android:label="BillingInfo"/>
+        <activity android:name=".DeliveryInfoActivity"
+            android:label="DeliveryInfo"/>
 
     </application>
 
