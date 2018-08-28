@@ -18,7 +18,7 @@ public class RegisterActivity extends Activity{
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), MobileSignupActivity.class);
                 startActivity(i);
 
             }
@@ -28,8 +28,6 @@ public class RegisterActivity extends Activity{
                 // Code here executes on main thread after user presses button
                 Intent i = new Intent(getApplicationContext(), UserInfoActivity.class);
                 startActivity(i);
-
-
             }
         });
 
