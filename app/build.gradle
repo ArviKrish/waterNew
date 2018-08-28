@@ -29,4 +29,23 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def RETROFIT_VERSION = "2.1.0"
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-scalars:${RETROFIT_VERSION}"
+    compile ("com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"){
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    def OKHTTP_VERSION = "3.4.2"
+    compile "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    compile "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
+   /* compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'*/
+
 }

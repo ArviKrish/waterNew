@@ -38,7 +38,7 @@ public class IndexActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        Button login = findViewById(R.id.login);
+        Button login = findViewById(R.id.loginBtn);
         Button signup = findViewById(R.id.signup);
 
         login.setOnClickListener(new View.OnClickListener() {

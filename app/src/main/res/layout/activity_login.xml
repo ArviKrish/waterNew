@@ -46,6 +46,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:layout_below="@+id/progressBar"
+            android:layout_alignRight="@+id/textView"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignLeft="@+id/textview"
+            android:layout_alignStart="@+id/textview"
+            android:layout_alignParentBottom="true" />
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="285dp"
@@ -64,7 +78,7 @@
                 tools:text="LOGIN" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/phoneNumberTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center"
@@ -74,12 +88,11 @@
                 android:theme="@style/Theme.AppCompat.Light" />
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/passwordTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center"
                 android:ems="10"
-
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
@@ -100,8 +113,10 @@
                 android:textAlignment="viewEnd"
                 tools:text="Forgot Password?" />
 
+
             <Button
-                android:id="@+id/login"
+                android:id="@+id/loginBtn"
+
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,19 +124,20 @@
                 android:background="#348089"
                 android:text="LOGIN"
                 android:textAlignment="gravity"
+                android:onClick="onLogin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:theme="@style/Theme.AppCompat.Light"
                 tools:text="LOGIN" />
 
-         <!--   <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="7dp"
-                android:paddingTop="10dp"
-                android:text="Sign Up"
-                android:textAlignment="center"
-                tools:text="Sign Up" />-->
+            <!--   <TextView
+                   android:id="@+id/textView4"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingBottom="7dp"
+                   android:paddingTop="10dp"
+                   android:text="Sign Up"
+                   android:textAlignment="center"
+                   tools:text="Sign Up" />-->
 
             <Button
                 android:id="@+id/signup"
