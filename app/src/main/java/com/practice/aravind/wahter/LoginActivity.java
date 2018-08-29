@@ -33,15 +33,20 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         spinner=(ProgressBar)findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
-
     }
 
+    public void onSignUpBtnClick(View v) {
+
+        Intent mobileSignupActivity;
+        mobileSignupActivity = new Intent(LoginActivity.this, MobileSignupActivity.class);
+        startActivity(mobileSignupActivity);
+    }
     public void onLogin(View v) {
 
 
         Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
         loginIntent.putExtra("keep", true);
-
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberTxt);
         passwordText = (EditText) findViewById(R.id.passwordTxt);
         boolean isValidationSuccessful = true;
@@ -55,8 +60,6 @@ public class LoginActivity extends Activity {
             isValidationSuccessful = false;
             passwordText.setError("Invalid Password");
         }
-        spinner=(ProgressBar)findViewById(R.id.progressBar);
-
         if (isValidationSuccessful) {
             spinner.setVisibility(View.VISIBLE);
             phoneNumberText.setEnabled(false);

@@ -39,7 +39,7 @@ public class IndexActivity extends AppCompatActivity {
 
 
         Button login = findViewById(R.id.loginBtn);
-        Button signup = findViewById(R.id.signup);
+        Button signup = findViewById(R.id.signUpBtn);
 
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -20,6 +20,9 @@ interface APIInterface {
     @GET("/users/authenticateUser?")
     Call<Response> authenticateUser(@Query("phoneNumber") String phoneNumber, @Query("password") String password);
 
+    @GET("/users/validatePhoneNumber?")
+    Call<Response> validatePhoneNumber(@Query("phoneNumber") String phoneNumber);
+
     /*@FormUrlEncoded
     @POST("/api/users?")
     Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);*/

@@ -64,7 +64,7 @@
                 tools:text="LOGIN" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/phoneNumberTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center"

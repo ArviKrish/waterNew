@@ -140,7 +140,7 @@
                    tools:text="Sign Up" />-->
 
             <Button
-                android:id="@+id/signup"
+                android:id="@+id/signUpBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="7dp"
@@ -148,8 +148,8 @@
                 android:text="Sign Up"
                 android:background="#fff"
                 android:textAlignment="center"
+                android:onClick="onSignUpBtnClick"
                 tools:text="Sign Up"/>
-
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
