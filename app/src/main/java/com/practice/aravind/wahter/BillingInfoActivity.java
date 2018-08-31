@@ -7,10 +7,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class BillingInfoActivity extends AppCompatActivity {
+
+    String emailAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billing_info);
+
+        Bundle bundle = getIntent().getExtras();
+        emailAddress = bundle.getString("emailAddress");
+
         Button previousBtn = findViewById(R.id.previousBtn);
         Button nextBtn = findViewById(R.id.nextBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
@@ -24,8 +31,9 @@ public class BillingInfoActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent i = new Intent(getApplicationContext(), DeliveryInfoActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(getApplicationContext(), DeliveryInfoActivity.class);
+                intent.putExtra("emailAddress", emailAddress);
+                startActivity(intent);
 
 
             }

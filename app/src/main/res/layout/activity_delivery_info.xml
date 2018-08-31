@@ -60,7 +60,7 @@
 
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/companyAddressTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
