@@ -12,9 +12,9 @@ public class DeliveryInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_info);
-        Button button1 = findViewById(R.id.button1);
-        Button button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        Button submitBtn = findViewById(R.id.submitBtn);
+        Button previousBtn = findViewById(R.id.previousBtn);
+        previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Intent i = new Intent(getApplicationContext(), BillingInfoActivity.class);
@@ -22,7 +22,7 @@ public class DeliveryInfoActivity extends AppCompatActivity {
 
             }
         });
-        button1.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);

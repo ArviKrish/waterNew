@@ -80,7 +80,6 @@ public class MobileSignupActivity extends Activity {
                             //Logging goes here
                             Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
                             phoneNumberText.setEnabled(true);
-                            spinner.setVisibility(View.GONE);
                             t.printStackTrace();
                         }
                     });

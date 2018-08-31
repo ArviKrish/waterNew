@@ -13,9 +13,9 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
 
-        Button button1 = findViewById(R.id.button2);
-        Button button2 = findViewById(R.id.button3);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Button previousBtn = findViewById(R.id.previousBtn);
+        Button nextBtn = findViewById(R.id.nextBtn);
+        previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
@@ -23,7 +23,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Intent i = new Intent(getApplicationContext(), BillingInfoActivity.class);
