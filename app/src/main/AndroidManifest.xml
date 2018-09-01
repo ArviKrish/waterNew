@@ -26,21 +26,27 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="Register"/>
+            android:label="Register" />
         <activity
             android:name=".UserInfoActivity"
-            android:label="UserInfo"/>
+            android:label="UserInfo" />
         <activity
             android:name=".IndexActivity"
             android:label="Index" />
-        <activity android:name=".BillingInfoActivity"
-            android:label="BillingInfo"/>
-        <activity android:name=".DeliveryInfoActivity"
-            android:label="DeliveryInfo"/>
+        <activity
+            android:name=".BillingInfoActivity"
+            android:label="BillingInfo" />
+        <activity
+            android:name=".DeliveryInfoActivity"
+            android:label="DeliveryInfo" />
         <activity
             android:name=".MobileSignupActivity"
             android:label="MobileSignup" />
-
+        <activity
+            android:name=".ForgotPasswordMobileActivity"
+            android:label="" />
+        <activity android:name=".ForgotPasswordOTP" />
+        <activity android:name=".ForgotPasswordNewAndConfirmActivity"></activity>
     </application>
 
 </manifest>

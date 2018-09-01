@@ -36,7 +36,6 @@ public class LoginActivity extends Activity {
     }
 
     public void onSignUpBtnClick(View v) {
-
         Intent mobileSignupActivity;
         mobileSignupActivity = new Intent(LoginActivity.this, MobileSignupActivity.class);
         startActivity(mobileSignupActivity);
@@ -119,6 +118,12 @@ public class LoginActivity extends Activity {
                 }
             });
         }
+    }
+
+    public void onForgotPassword(View v) {
+        Intent ForgotPasswordMobileActivity;
+        ForgotPasswordMobileActivity = new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class);
+        startActivity(ForgotPasswordMobileActivity);
     }
 
     private boolean isValidPhone(String phoneNumber) {

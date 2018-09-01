@@ -15,7 +15,7 @@ class APIClient {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:8065/").addConverterFactory(GsonConverterFactory.create()).client(client).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.6:8065/").addConverterFactory(GsonConverterFactory.create()).client(client).build();
         return retrofit;
     }
 }
