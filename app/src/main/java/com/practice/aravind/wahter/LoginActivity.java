@@ -23,9 +23,9 @@ import retrofit2.Converter;
 public class LoginActivity extends Activity {
 
     private ProgressBar spinner;
-    EditText phoneNumberText;
-    EditText passwordText;
-    APIInterface apiInterface;
+    private EditText phoneNumberText;
+    private EditText passwordText;
+    private APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,10 @@ public class LoginActivity extends Activity {
     }
 
     public void onSignUpBtnClick(View v) {
-        Intent mobileSignupActivity;
-        mobileSignupActivity = new Intent(LoginActivity.this, MobileSignupActivity.class);
-        startActivity(mobileSignupActivity);
+        startActivity(new Intent(LoginActivity.this, MobileSignupActivity.class));
     }
 
     public void onLogin(View v) {
-
-
         Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
         loginIntent.putExtra("keep", true);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
@@ -123,22 +119,18 @@ public class LoginActivity extends Activity {
     }
 
     public void onForgotPassword(View v) {
-        Intent ForgotPasswordMobileActivity;
-        ForgotPasswordMobileActivity = new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class);
-        startActivity(ForgotPasswordMobileActivity);
+        startActivity(new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class));
     }
 
     private boolean isValidPhone(String phoneNumber) {
-        if (phoneNumber != null && phoneNumber.length() == 10) {
+        if (!phoneNumber.isEmpty() && phoneNumber.length() == 10)
             return true;
-        }
-        return false;
+            return false;
     }
 
     private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() >= 6) {
+        if (!pass.isEmpty() && pass.length() >= 6)
             return true;
-        }
-        return false;
+            return false;
     }
 }
