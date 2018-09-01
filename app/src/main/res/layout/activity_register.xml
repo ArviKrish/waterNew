@@ -95,11 +95,11 @@
                 android:paddingBottom="10dp" />
 
             <EditText
-                android:id="@+id/editText12"
+                android:id="@+id/emailAddressTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="Email Id"
                 android:inputType="textEmailAddress"
                 android:paddingBottom="10dp" />
 

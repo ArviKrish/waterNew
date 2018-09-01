@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.view.Window;
+import android.widget.EditText;
 
 public class RegisterActivity extends Activity{
     @Override
@@ -26,8 +27,11 @@ public class RegisterActivity extends Activity{
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent i = new Intent(getApplicationContext(), UserInfoActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
+                EditText emailAddressTxt = (EditText) findViewById(R.id.emailAddressTxt);
+                final String emailAddress = emailAddressTxt.getText().toString();
+                intent.putExtra("emailAddress", emailAddress);
+                startActivity(intent);
             }
         });
 
