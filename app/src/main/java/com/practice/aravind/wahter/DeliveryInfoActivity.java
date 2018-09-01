@@ -41,11 +41,10 @@ public class DeliveryInfoActivity extends AppCompatActivity {
         });
 
 
-
         submitBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                EditText  companyAddressTxt = (EditText) findViewById(R.id.companyAddressTxt);
+                EditText companyAddressTxt = (EditText) findViewById(R.id.companyAddressTxt);
                 final String companyAddress = companyAddressTxt.getText().toString();
                 System.out.println("XXX" + companyAddress);
 

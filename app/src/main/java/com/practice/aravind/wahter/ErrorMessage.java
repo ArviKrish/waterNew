@@ -1,47 +1,46 @@
 package com.practice.aravind.wahter;
 
 public class ErrorMessage {
-	
-	private String errorCode;	
-	
-	private String errorMessage;
-	
-	private String field;
-	
-	private String objectId;
 
-	public String getErrorCode() {
-		return errorCode;
-	}
+    private String errorCode;
 
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
+    private String errorMessage;
 
-	public String getErrorMessage() {
-		return errorMessage;
-	}
+    private String field;
 
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
+    private String objectId;
 
-	public String getObjectId() {
-		return objectId;
-	}
+    public String getErrorCode() {
+        return errorCode;
+    }
 
-	public void setObjectId(String objectId) {
-		this.objectId = objectId;
-	}
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
 
-	public String getField() {
-		return field;
-	}
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
-	public void setField(String field) {
-		this.field = field;
-	}
-	
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
-	
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+
 }

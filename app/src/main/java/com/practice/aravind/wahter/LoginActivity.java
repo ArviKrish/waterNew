@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
     }
 
@@ -40,12 +40,13 @@ public class LoginActivity extends Activity {
         mobileSignupActivity = new Intent(LoginActivity.this, MobileSignupActivity.class);
         startActivity(mobileSignupActivity);
     }
+
     public void onLogin(View v) {
 
 
         Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
         loginIntent.putExtra("keep", true);
-        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberTxt);
         passwordText = (EditText) findViewById(R.id.passwordTxt);
         boolean isValidationSuccessful = true;
@@ -71,7 +72,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
-                    if(response.isSuccessful()) {
+                    if (response.isSuccessful()) {
                         processResponse(response.body());
                         Response serviceResponse = response.body();
                         String textReceived = serviceResponse.getMessage();
@@ -90,7 +91,7 @@ public class LoginActivity extends Activity {
 
                 }
 
-                private void processResponse(Response serviceResponse){
+                private void processResponse(Response serviceResponse) {
 
                     String textReceived = serviceResponse.getMessage();
                     Toast toast = Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG);
@@ -100,17 +101,18 @@ public class LoginActivity extends Activity {
                         Intent indexActivity = new Intent(LoginActivity.this, IndexActivity.class);
                         startActivity(indexActivity);
                     } else {
-                            phoneNumberText .setEnabled(true);
-                            passwordText.setEnabled(true);
-                            passwordText.setText("");
-                            spinner.setVisibility(View.GONE);
-                        }
+                        phoneNumberText.setEnabled(true);
+                        passwordText.setEnabled(true);
+                        passwordText.setText("");
+                        spinner.setVisibility(View.GONE);
                     }
+                }
+
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
                     //Logging goes here
                     Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
-                    phoneNumberText .setEnabled(true);
+                    phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);
                     passwordText.setText("");
                     spinner.setVisibility(View.GONE);

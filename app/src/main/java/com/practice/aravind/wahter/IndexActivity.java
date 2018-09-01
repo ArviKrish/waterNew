@@ -31,6 +31,7 @@ import com.practice.aravind.wahter.RegisterActivity;
 public class IndexActivity extends AppCompatActivity {
     private int progressStatus = 0;
     private Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
