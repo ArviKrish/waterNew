@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "586174629185",
+    "firebase_url": "https://wahter-fad2e.firebaseio.com",
+    "project_id": "wahter-fad2e",
+    "storage_bucket": "wahter-fad2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586174629185:android:3fd441f2ad2695fb",
+        "android_client_info": {
+          "package_name": "com.practice.aravind.wahter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586174629185-p834umr1qjqnrn7k7lcruf6b9850i7nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjqwS06_JaAqoB2amFh71TN_WnLEMbIJQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
