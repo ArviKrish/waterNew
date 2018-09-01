@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.view.Window;
 import android.widget.EditText;
 
-public class RegisterActivity extends Activity{
+public class RegisterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-          Button previousBtn = findViewById(R.id.previousBtn);
-          Button nextBtn = findViewById(R.id.nextBtn);
+        Button previousBtn = findViewById(R.id.previousBtn);
+        Button nextBtn = findViewById(R.id.nextBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
@@ -38,7 +38,7 @@ public class RegisterActivity extends Activity{
 
     }
 
-    public void onNext(View v){
+    public void onNext(View v) {
         Intent i = new Intent(getApplicationContext(), UserInfoActivity.class);
         startActivity(i);
     }

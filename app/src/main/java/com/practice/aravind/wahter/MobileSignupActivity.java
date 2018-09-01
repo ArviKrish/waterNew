@@ -51,7 +51,7 @@ public class MobileSignupActivity extends Activity {
 
                             if (response.isSuccessful()) {
                                 processResponse(response.body());
-                               } else {
+                            } else {
                                 Converter<ResponseBody, Response> converter
                                         = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
                                 Response errorResponse = null;
