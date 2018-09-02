@@ -73,8 +73,6 @@ public class LoginActivity extends Activity {
 
                     if (response.isSuccessful()) {
                         processResponse(response.body());
-                        /*String textReceived = response.body().getMessage();
-                        WahterUtility.showToast(getApplicationContext(),textReceived);*/
                     } else {
                         Response errorResponse = WahterUtility.extractError(response);
                         processResponse(errorResponse);
