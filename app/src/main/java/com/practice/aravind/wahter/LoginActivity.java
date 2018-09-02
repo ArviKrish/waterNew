@@ -4,11 +4,17 @@ package com.practice.aravind.wahter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.practice.aravind.wahter.api.APIClient;
@@ -31,6 +37,7 @@ public class LoginActivity extends Activity {
     private EditText phoneNumberText;
     private EditText passwordText;
     private APIInterface apiInterface;
+    private ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class LoginActivity extends Activity {
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberTxt);
         passwordText = (EditText) findViewById(R.id.passwordTxt);
+        constraintLayout = (ConstraintLayout) findViewById(R.id.linearLayout2);
         boolean isValidationSuccessful = true;
         final String password = passwordText.getText().toString().trim();
         if (!WahterUtility.isValidPassword(password)) {
@@ -97,7 +105,20 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
                     //todo logging
-                    WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
+                    Snackbar snackbar = Snackbar
+                            .make(constraintLayout, WahterConstants.CONNECTION_ERROR, Snackbar.LENGTH_LONG)
+                            .setAction("RETRY", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    WahterUtility.showToast(getApplicationContext(),"To be implemented");
+                                }
+                            });
+                    snackbar.setActionTextColor(Color.RED);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    //WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
                     phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);
                     passwordText.setText(WahterConstants.EMPTY_STRING);
