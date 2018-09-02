@@ -8,6 +8,7 @@ public class WahterConstants {
     public final static String INVALID_OTP = "Enter valid OTP";
     public static final String OTP_FAILED = "OTP VERIFICATION FAILED";
     public static final String PASSWORD_CONFIRM_ERROR = "Password and confirm password are not same";
+    public static final String RETRY = "Retry";
 
     public final static String EMPTY_STRING = "";
     public final static String COUNTRY_CODE = "+91";
@@ -16,5 +17,6 @@ public class WahterConstants {
     public static final String ERROR_CODE_001 = "001";
 
     public static final String PHONE_NUMBER = "phoneNumber";
+
 
 }

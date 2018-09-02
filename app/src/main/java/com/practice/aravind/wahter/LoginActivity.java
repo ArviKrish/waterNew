@@ -105,20 +105,14 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
                     //todo logging
-                    Snackbar snackbar = Snackbar
-                            .make(constraintLayout, WahterConstants.CONNECTION_ERROR, Snackbar.LENGTH_LONG)
-                            .setAction("RETRY", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    WahterUtility.showToast(getApplicationContext(),"To be implemented");
-                                }
-                            });
-                    snackbar.setActionTextColor(Color.RED);
-                    View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                    textView.setTextColor(Color.YELLOW);
-                    snackbar.show();
-                    //WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
+                    View.OnClickListener listener = new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            WahterUtility.showToast(getApplicationContext(),"To be implemented");
+                        }
+                    };
+                    WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.RETRY, listener);
+                    //WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.EMPTY_STRING, null);
                     phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);
                     passwordText.setText(WahterConstants.EMPTY_STRING);
@@ -128,6 +122,8 @@ public class LoginActivity extends Activity {
             });
 
     }
+
+
 
     public void onForgotPassword(View v) {
         startActivity(new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class));
