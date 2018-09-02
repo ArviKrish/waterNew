@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
@@ -58,6 +60,15 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
         if (!isValidationSuccessful) {
             return;
         }
+
+        if(FirebaseAuth.getInstance().getCurrentUser() !=null) {
+            if (!WahterUtility.checkforSame(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber(), WahterConstants.COUNTRY_CODE + phoneNumber)) {
+                WahterUtility.showToast(getApplicationContext(), "Please Try Again...");
+                FirebaseAuth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
+            }
+        }
+
         newPasswordTxt.setEnabled(false);
         confirmPasswordTxt.setEnabled(false);
         Users users = new Users();
@@ -79,6 +90,7 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
             }
 
             private void processResponse(Response serviceResponse) {
+                FirebaseAuth.getInstance().signOut();
                 WahterUtility.showToast(getApplicationContext(), serviceResponse.getMessage());
                 Intent indexActivity = new Intent(ForgotPasswordNewAndConfirmActivity.this, LoginActivity.class);
                 startActivity(indexActivity);
