@@ -1,4 +1,6 @@
-package com.practice.aravind.wahter;
+package com.practice.aravind.wahter.documents;
+
+import com.practice.aravind.wahter.documents.ErrorMessage;
 
 import java.util.List;
 

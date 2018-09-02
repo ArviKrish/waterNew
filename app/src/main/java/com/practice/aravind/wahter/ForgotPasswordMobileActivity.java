@@ -5,19 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.practice.aravind.wahter.api.APIClient;
+import com.practice.aravind.wahter.api.APIInterface;
+import com.practice.aravind.wahter.documents.Response;
 
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Converter;
 
 public class ForgotPasswordMobileActivity extends Activity {
 

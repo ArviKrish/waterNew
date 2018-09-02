@@ -1,4 +1,4 @@
-package com.practice.aravind.wahter;
+package com.practice.aravind.wahter.documents;
 
 public class ErrorMessage {
 

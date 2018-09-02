@@ -2,15 +2,20 @@ package com.practice.aravind.wahter;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.practice.aravind.wahter.api.APIClient;
+import com.practice.aravind.wahter.api.APIInterface;
+import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.util.WahterConstants;
+import com.practice.aravind.wahter.util.WahterUtility;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -35,102 +40,81 @@ public class LoginActivity extends Activity {
         spinner.setVisibility(View.GONE);
     }
 
-    public void onSignUpBtnClick(View v) {
-        startActivity(new Intent(LoginActivity.this, MobileSignupActivity.class));
-    }
-
     public void onLogin(View v) {
-        Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-        loginIntent.putExtra("keep", true);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberTxt);
         passwordText = (EditText) findViewById(R.id.passwordTxt);
         boolean isValidationSuccessful = true;
-        final String phoneNumber = phoneNumberText.getText().toString();
-        if (!isValidPhone(phoneNumber)) {
+        final String password = passwordText.getText().toString().trim();
+        if (!WahterUtility.isValidPassword(password)) {
             isValidationSuccessful = false;
-            phoneNumberText.setError("Invalid Phone number");
+            passwordText.setError(WahterConstants.INVALID_PASSWORD);
+            passwordText.requestFocus();
         }
-        final String password = passwordText.getText().toString();
-        if (!isValidPassword(password)) {
+        final String phoneNumber = phoneNumberText.getText().toString().trim();
+        if (!WahterUtility.isValidPhone(phoneNumber)) {
             isValidationSuccessful = false;
-            passwordText.setError("Invalid Password");
+            phoneNumberText.setError(WahterConstants.INVALID_PHONE_NUMBER);
+            phoneNumberText.requestFocus();
         }
-        if (isValidationSuccessful) {
+        if (!isValidationSuccessful) {
+            return;
+        }
             spinner.setVisibility(View.VISIBLE);
             phoneNumberText.setEnabled(false);
             passwordText.setEnabled(false);
 
             apiInterface = APIClient.getClient().create(APIInterface.class);
 
-            Call<com.practice.aravind.wahter.Response> authenticateService = apiInterface.authenticateUser(phoneNumber, password);
+            Call<Response> authenticateService = apiInterface.authenticateUser(phoneNumber, password);
             authenticateService.enqueue(new Callback<Response>() {
                 @Override
                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
                     if (response.isSuccessful()) {
                         processResponse(response.body());
-                        Response serviceResponse = response.body();
-                        String textReceived = serviceResponse.getMessage();
-                        Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG).show();
+                        /*String textReceived = response.body().getMessage();
+                        WahterUtility.showToast(getApplicationContext(),textReceived);*/
                     } else {
-                        Converter<ResponseBody, Response> converter
-                                = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
-                        Response errorResponse = null;
-                        try {
-                            errorResponse = converter.convert(response.errorBody());
-                            processResponse(errorResponse);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Response errorResponse = WahterUtility.extractError(response);
+                        processResponse(errorResponse);
                     }
-
                 }
 
                 private void processResponse(Response serviceResponse) {
 
                     String textReceived = serviceResponse.getMessage();
-                    Toast toast = Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 250);
-                    toast.show();
-                    if (textReceived.equalsIgnoreCase("Authentication Success")) {
-                        Intent indexActivity = new Intent(LoginActivity.this, IndexActivity.class);
+                    WahterUtility.showToast(getApplicationContext(),textReceived);
+                    if (serviceResponse.getResponseCode().equalsIgnoreCase(WahterConstants.ERROR_CODE_001)) {
+                        Intent indexActivity = new Intent(LoginActivity.this, RegisterActivity.class);
                         startActivity(indexActivity);
                     } else {
                         phoneNumberText.setEnabled(true);
                         passwordText.setEnabled(true);
-                        passwordText.setText("");
+                        passwordText.setText(WahterConstants.EMPTY_STRING);
                         spinner.setVisibility(View.GONE);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
-                    //Logging goes here
-                    Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
+                    WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
                     phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);
-                    passwordText.setText("");
+                    passwordText.setText(WahterConstants.EMPTY_STRING);
                     spinner.setVisibility(View.GONE);
                     t.printStackTrace();
                 }
             });
-        }
+
     }
 
     public void onForgotPassword(View v) {
         startActivity(new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class));
     }
 
-    private boolean isValidPhone(String phoneNumber) {
-        if (!phoneNumber.isEmpty() && phoneNumber.length() == 10)
-            return true;
-            return false;
+    public void onSignUpBtnClick(View v) {
+        startActivity(new Intent(LoginActivity.this, MobileSignupActivity.class));
     }
 
-    private boolean isValidPassword(String pass) {
-        if (!pass.isEmpty() && pass.length() >= 6)
-            return true;
-            return false;
-    }
 }

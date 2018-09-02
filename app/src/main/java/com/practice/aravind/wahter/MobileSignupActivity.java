@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.practice.aravind.wahter.api.APIClient;
+import com.practice.aravind.wahter.api.APIInterface;
+import com.practice.aravind.wahter.documents.Response;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 

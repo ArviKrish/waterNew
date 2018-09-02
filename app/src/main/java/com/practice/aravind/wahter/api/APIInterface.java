@@ -1,18 +1,16 @@
-package com.practice.aravind.wahter;
+package com.practice.aravind.wahter.api;
 
+import com.practice.aravind.wahter.documents.Response;
 import com.practice.aravind.wahter.documents.Users;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
-interface APIInterface {
+public interface APIInterface {
 
    /* @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();*/
