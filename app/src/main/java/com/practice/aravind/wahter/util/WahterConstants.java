@@ -17,6 +17,8 @@ public class WahterConstants {
     public static final String ERROR_CODE_001 = "001";
 
     public static final String PHONE_NUMBER = "phoneNumber";
+    public static final String NEXT_ACTIVITY = "next activity";
 
-
+    public static final String  FORGOT_PASSWORD_ACTIVITY = "com.practice.aravind.wahter.ForgotPasswordNewAndConfirmActivity";
+    public static final String REGISTER_ACTIVITY = "com.practice.aravind.wahter.RegisterActivity";
 }

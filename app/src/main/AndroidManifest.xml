@@ -45,7 +45,7 @@
         <activity
             android:name=".ForgotPasswordMobileActivity"
             android:label="" />
-        <activity android:name=".ForgotPasswordOTP" />
+        <activity android:name=".OTPVerification" />
         <activity android:name=".ForgotPasswordNewAndConfirmActivity"></activity>
     </application>
 

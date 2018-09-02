@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,18 +20,20 @@ import com.practice.aravind.wahter.util.WahterUtility;
 
 import java.util.concurrent.TimeUnit;
 
-public class ForgotPasswordOTP extends AppCompatActivity {
+public class OTPVerification extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText otpTxt;
     private String phoneNumber;
     private String verificationId;
+    private Class nextActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password_otp);
+        setContentView(R.layout.otp_verification);
         phoneNumber = getIntent().getStringExtra(WahterConstants.PHONE_NUMBER);
+        nextActivity = WahterUtility.getClass(getIntent().getStringExtra(WahterConstants.NEXT_ACTIVITY));
         mAuth = FirebaseAuth.getInstance();
         sendVerificationCode(WahterConstants.COUNTRY_CODE + phoneNumber);
     }
@@ -60,12 +61,12 @@ public class ForgotPasswordOTP extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(ForgotPasswordOTP.this, ForgotPasswordNewAndConfirmActivity.class);
+                            Intent intent = new Intent(OTPVerification.this, nextActivity);
                             intent.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
                             startActivity(intent);
                         } else {
                             otpTxt.setEnabled(true);
-                            WahterUtility.showToast(ForgotPasswordOTP.this, task.getException().getMessage());
+                            WahterUtility.showToast(OTPVerification.this, task.getException().getMessage());
                         }
                     }
                 });
@@ -95,7 +96,7 @@ public class ForgotPasswordOTP extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            WahterUtility.showToast(ForgotPasswordOTP.this, WahterConstants.OTP_FAILED);
+            WahterUtility.showToast(OTPVerification.this, WahterConstants.OTP_FAILED);
             otpTxt.setEnabled(true);
             e.printStackTrace();
         }

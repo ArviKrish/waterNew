@@ -3,10 +3,8 @@ package com.practice.aravind.wahter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
@@ -47,8 +45,9 @@ public class ForgotPasswordMobileActivity extends Activity {
                 if (response.isSuccessful()) {
                     processResponse(response.body());
                 } else {
-                    Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, ForgotPasswordOTP.class);
+                    Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, OTPVerification.class);
                     indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
+                    indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.FORGOT_PASSWORD_ACTIVITY);
                     startActivity(indexActivity);
                 }
             }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.util.WahterConstants;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -75,7 +76,14 @@ public class MobileSignupActivity extends Activity {
                         }
 
                         private void processResponse(Response serviceResponse) {
+
                             Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
+
+                            //todo include authentication for registration
+                            /*Intent indexActivity = new Intent(MobileSignupActivity.this, OTPVerification.class);
+                              indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.REGISTER_ACTIVITY);
+                            */
+                            indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
                             startActivity(indexActivity);
                         }
 
