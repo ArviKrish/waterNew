@@ -16,45 +16,41 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.practice.aravind.wahter.util.WahterConstants;
+import com.practice.aravind.wahter.util.WahterUtility;
 
 import java.util.concurrent.TimeUnit;
 
 public class ForgotPasswordOTP extends AppCompatActivity {
 
-    private String verificationId;
     private FirebaseAuth mAuth;
     private EditText otpTxt;
-    String phoneNumber;
-
+    private String phoneNumber;
+    private String verificationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_otp);
-        phoneNumber = getIntent().getStringExtra("phoneNumber");
-        sendVerificationCode("+91" + phoneNumber);
-
+        phoneNumber = getIntent().getStringExtra(WahterConstants.PHONE_NUMBER);
+        mAuth = FirebaseAuth.getInstance();
+        sendVerificationCode(WahterConstants.COUNTRY_CODE + phoneNumber);
     }
 
     public void onForgotPasswordOTP(View v) {
-
-        String phoneNumber = getIntent().getStringExtra("phoneNumber");
-        mAuth = FirebaseAuth.getInstance();
         otpTxt = findViewById(R.id.otpTxt);
-        otpTxt = findViewById(R.id.otpTxt);
-        String otp = otpTxt.getText().toString().trim();
-
-        if (otp.isEmpty() || otp.length() < 6) {
-
-            otpTxt.setError("Enter code...");
+        final String otp = otpTxt.getText().toString().trim();
+        if (!WahterUtility.isValidOTP(otp)) {
+            otpTxt.setError(WahterConstants.INVALID_OTP);
             otpTxt.requestFocus();
             return;
         }
+        otpTxt.setEnabled(false);
         verifyCode(otp);
     }
 
-    private void verifyCode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+    private void verifyCode(String otp) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp);
         signInWithCredential(credential);
     }
 
@@ -64,50 +60,44 @@ public class ForgotPasswordOTP extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //todo //FirebaseAuth.getInstance().signOut();
                             Intent intent = new Intent(ForgotPasswordOTP.this, ForgotPasswordNewAndConfirmActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("phoneNumber", phoneNumber);
+                            intent.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
                             startActivity(intent);
-
                         } else {
-                            Toast.makeText(ForgotPasswordOTP.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            otpTxt.setEnabled(true);
+                            WahterUtility.showToast(ForgotPasswordOTP.this, task.getException().getMessage());
                         }
                     }
                 });
     }
 
-    private void sendVerificationCode(String number) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                number,
-                60,
-                TimeUnit.SECONDS,
-                TaskExecutors.MAIN_THREAD,
-                mCallBack
-        );
+    private void sendVerificationCode(String phoneNumber) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,WahterConstants.LONG_60, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD, mCallBack);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
-        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationId = s;
+        public void onCodeSent(String verificationIdReceived, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(verificationIdReceived, forceResendingToken);
+            verificationId = verificationIdReceived;
         }
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            String code = phoneAuthCredential.getSmsCode();
-            if (code != null) {
-                otpTxt.setText(code);
-                verifyCode(code);
+            String otp = phoneAuthCredential.getSmsCode();
+            if (!otp.isEmpty()) {
+                otpTxt.setText(otp);
+                verifyCode(otp);
             }
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(ForgotPasswordOTP.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            WahterUtility.showToast(ForgotPasswordOTP.this, WahterConstants.OTP_FAILED);
+            otpTxt.setEnabled(true);
+            e.printStackTrace();
         }
     };
 }

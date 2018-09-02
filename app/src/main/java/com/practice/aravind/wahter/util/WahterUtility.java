@@ -41,8 +41,20 @@ public class WahterUtility {
         return false;
     }
 
+    public static boolean isValidOTP(String otp) {
+        if (!otp.isEmpty() && otp.length() == 6)
+            return true;
+        return false;
+    }
+
     public static boolean isValidPassword(String pass) {
         if (!pass.isEmpty() && pass.length() >= 6)
+            return true;
+        return false;
+    }
+
+    public static  boolean checkforSame(String first, String second) {
+        if (first.equalsIgnoreCase(second))
             return true;
         return false;
     }

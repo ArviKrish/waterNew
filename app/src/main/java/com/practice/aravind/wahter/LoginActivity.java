@@ -96,6 +96,7 @@ public class LoginActivity extends Activity {
 
                 @Override
                 public void onFailure(Call<Response> call, Throwable t) {
+                    //todo logging
                     WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
                     phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);

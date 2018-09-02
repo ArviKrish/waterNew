@@ -16,7 +16,7 @@ public interface APIInterface {
     Call<MultipleResource> doGetListResources();*/
 
     @PATCH("/users/updateuser")
-    Call<Response> updateuser(@Body Users users);
+    Call<Response> updateUser(@Body Users users);
 
     @GET("/users/authenticateUser?")
     Call<Response> authenticateUser(@Query("phoneNumber") String phoneNumber, @Query("password") String password);

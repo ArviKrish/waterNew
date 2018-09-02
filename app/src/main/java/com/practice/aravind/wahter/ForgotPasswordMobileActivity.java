@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.util.WahterConstants;
+import com.practice.aravind.wahter.util.WahterUtility;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +20,7 @@ import retrofit2.Callback;
 public class ForgotPasswordMobileActivity extends Activity {
 
     private EditText phoneNumberTxt;
-    APIInterface apiInterface;
+    private APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,50 +33,44 @@ public class ForgotPasswordMobileActivity extends Activity {
         phoneNumberTxt = findViewById(R.id.phoneNumberTxt);
         final String phoneNumber = phoneNumberTxt.getText().toString().trim();
 
-        if (phoneNumber.isEmpty() || phoneNumber.length() < 10) {
-            phoneNumberTxt.setError("Valid number is required");
+        if (!WahterUtility.isValidPhone(phoneNumber)) {
+            phoneNumberTxt.setError(WahterConstants.INVALID_PHONE_NUMBER);
             phoneNumberTxt.requestFocus();
             return;
         }
 
         phoneNumberTxt.setEnabled(false);
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        Call<Response> authenticateService = apiInterface.validatePhoneNumber(phoneNumber);
-        authenticateService.enqueue(new Callback<Response>() {
+        Call<Response> validateService = apiInterface.validatePhoneNumber(phoneNumber);
+        validateService.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-
                 if (response.isSuccessful()) {
                     processResponse(response.body());
                 } else {
-
                     Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, ForgotPasswordOTP.class);
-                    indexActivity.putExtra("phoneNumber", phoneNumber);
+                    indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
                     startActivity(indexActivity);
-
                 }
-
             }
 
             private void processResponse(Response serviceResponse) {
                 String textReceived = serviceResponse.getMessage();
-                Toast toast = Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 250);
-                toast.show();
+                WahterUtility.showToast(getApplicationContext(),textReceived);
                 phoneNumberTxt.setEnabled(true);
             }
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                //Logging goes here
-                Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
+                WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
                 phoneNumberTxt.setEnabled(true);
                 t.printStackTrace();
             }
         });
     }
 
+    //todo //FirebaseAuth.getInstance().signOut();
+
+    //todo logout from Firebase
     /*@Override
     protected void onStart() {
         super.onStart();

@@ -12,6 +12,8 @@ import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
 import com.practice.aravind.wahter.documents.Users;
+import com.practice.aravind.wahter.util.WahterConstants;
+import com.practice.aravind.wahter.util.WahterUtility;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -26,91 +28,69 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
     private EditText newPasswordTxt;
     private EditText confirmPasswordTxt;
     private String phoneNumber;
-    private APIInterface apiInterface;
+    private APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_new_and_confirm);
-        phoneNumber = getIntent().getStringExtra("phoneNumber");
+        phoneNumber = getIntent().getStringExtra(WahterConstants.PHONE_NUMBER);
     }
 
     public void onChangePassword(View v) {
-
         newPasswordTxt = (EditText) findViewById(R.id.newPasswordTxt);
         confirmPasswordTxt = (EditText) findViewById(R.id.confirmPasswordTxt);
-
         boolean isValidationSuccessful = true;
         final String newPassword = newPasswordTxt.getText().toString().trim();
         final String confirmPassword = confirmPasswordTxt.getText().toString().trim();
-        if (!isValidPassword(newPassword, confirmPassword)) {
+
+        if (!WahterUtility.isValidPassword(newPassword)) {
             isValidationSuccessful = false;
-            confirmPasswordTxt.setError("Password not same");
+            newPasswordTxt.setError(WahterConstants.INVALID_PASSWORD);
+            newPasswordTxt.requestFocus();
+        }
+        if (!WahterUtility.checkforSame(newPassword, confirmPassword)) {
+            isValidationSuccessful = false;
+            WahterUtility.showToast(getApplicationContext(), WahterConstants.PASSWORD_CONFIRM_ERROR);
             confirmPasswordTxt.requestFocus();
             return;
         }
-
+        if (!isValidationSuccessful) {
+            return;
+        }
         newPasswordTxt.setEnabled(false);
         confirmPasswordTxt.setEnabled(false);
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
         Users users = new Users();
         users.setPhoneNumber(phoneNumber);
         users.setPassword(newPassword);
-        Call<Response> authenticateService = apiInterface.updateuser(users);
-        authenticateService.enqueue(new Callback<Response>() {
+        Call<Response> updateUserService = apiInterface.updateUser(users);
+        updateUserService.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-
                 if (response.isSuccessful()) {
                     processResponse(response.body());
                 } else {
-                    Converter<ResponseBody, Response> converter
-                            = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
-                    Response errorResponse = null;
-                    try {
-                        errorResponse = converter.convert(response.errorBody());
-                        String textReceived = errorResponse.getMessage();
-                        Toast toast = Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 250);
-                        toast.show();
-                        newPasswordTxt.setEnabled(true);
-                        confirmPasswordTxt.setEnabled(true);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Response errorResponse = WahterUtility.extractError(response);
+                    String textReceived = errorResponse.getMessage();
+                    WahterUtility.showToast(getApplicationContext(), textReceived);
+                    newPasswordTxt.setEnabled(true);
+                    confirmPasswordTxt.setEnabled(true);
                 }
-
             }
 
             private void processResponse(Response serviceResponse) {
-                Toast toast = Toast.makeText(getApplicationContext(), serviceResponse.getMessage(), Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 250);
-                toast.show();
+                WahterUtility.showToast(getApplicationContext(), serviceResponse.getMessage());
                 Intent indexActivity = new Intent(ForgotPasswordNewAndConfirmActivity.this, LoginActivity.class);
                 startActivity(indexActivity);
             }
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                //Logging goes here
-                Toast.makeText(getApplicationContext(), "Unable to connect to server"+t.getMessage(), Toast.LENGTH_LONG).show();
+                WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
                 newPasswordTxt.setEnabled(true);
                 confirmPasswordTxt.setEnabled(true);
                 t.printStackTrace();
             }
         });
-
-        
-
     }
-
-    private boolean isValidPassword(String newPassword, String confirmPassword) {
-        if (newPassword.equalsIgnoreCase(confirmPassword))
-            return true;
-        return false;
-    }
-
-
 }
