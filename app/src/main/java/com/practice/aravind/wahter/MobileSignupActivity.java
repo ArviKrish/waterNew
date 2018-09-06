@@ -38,7 +38,7 @@ public class MobileSignupActivity extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                phoneNumberText = (EditText) findViewById(R.id.phoneNumberTxt);
+                phoneNumberText = (EditText) findViewById(R.id.phoneNumberSignUp);
                 boolean isValidationSuccessful = true;
                 final String phoneNumber = phoneNumberText.getText().toString();
                 if (!isValidPhone(phoneNumber)) {
@@ -76,7 +76,6 @@ public class MobileSignupActivity extends Activity {
                         }
 
                         private void processResponse(Response serviceResponse) {
-
                             Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
 
                             //todo include authentication for registration

@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -20,6 +21,11 @@ public interface APIInterface {
 
     @GET("/users/authenticateUser?")
     Call<Response> authenticateUser(@Query("phoneNumber") String phoneNumber, @Query("password") String password);
+
+
+    @POST("/users/createpotentialuser")
+    Call<Response> createpotentialuser(@Body Users users);
+
 
     @GET("/users/validatePhoneNumber?")
     Call<Response> validatePhoneNumber(@Query("phoneNumber") String phoneNumber);
