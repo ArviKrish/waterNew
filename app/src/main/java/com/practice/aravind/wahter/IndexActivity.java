@@ -120,11 +120,11 @@ public class IndexActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void onLogin(View v) {
+    /*public void onLogin(View v) {
         // Switching to Login screen
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(i);
-    }
+    }*/
 
     public void loadingSpinner() {
         // Initialize a new instance of progress dialog
