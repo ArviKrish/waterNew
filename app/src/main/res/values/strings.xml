@@ -37,5 +37,6 @@
     <string name="pincode">Pincode</string>
     <string name="register">Register</string>
     <string name="tamil_nadu">Tamil Nadu</string>
+    <string name="title_activity_notification_view">NotificationView</string>
 
 </resources>
