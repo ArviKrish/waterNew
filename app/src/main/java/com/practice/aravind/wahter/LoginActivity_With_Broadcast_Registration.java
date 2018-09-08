@@ -3,40 +3,28 @@ package com.practice.aravind.wahter;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.receiver.ConnectionReceiver;
 import com.practice.aravind.wahter.util.WahterConstants;
 import com.practice.aravind.wahter.util.WahterUtility;
 
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Converter;
 
-public class LoginActivity extends Activity {
+public class LoginActivity_With_Broadcast_Registration extends Activity {
 
     private ProgressBar spinner;
     private EditText phoneNumberText;
@@ -44,12 +32,68 @@ public class LoginActivity extends Activity {
     private APIInterface apiInterface;
     private ConstraintLayout constraintLayout;
 
+    ConnectionReceiver receiver;
+    IntentFilter intentFilter;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(receiver, intentFilter);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         spinner = (ProgressBar) findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
+        receiver = new ConnectionReceiver();
+        intentFilter = new IntentFilter("com.practice.aravind.wahter.LoginActivity");
+
+
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(LoginActivity_With_Broadcast_Registration.this,
+                Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+                System.out.println("X");
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity_With_Broadcast_Registration.this,
+                    Manifest.permission.READ_PHONE_STATE)) {
+                System.out.println("Y");
+                ActivityCompat.requestPermissions(LoginActivity_With_Broadcast_Registration.this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        1);
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            } else {
+                // No explanation needed; request the permission
+                System.out.println("Z");
+                ActivityCompat.requestPermissions(LoginActivity_With_Broadcast_Registration.this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            System.out.println("A");
+        }
+
+
+
     }
 
     public void onLogin(View v) {
@@ -97,7 +141,7 @@ public class LoginActivity extends Activity {
                     String textReceived = serviceResponse.getMessage();
                     WahterUtility.showToast(getApplicationContext(),textReceived);
                     if (serviceResponse.getResponseCode().equalsIgnoreCase(WahterConstants.ERROR_CODE_001)) {
-                        Intent indexActivity = new Intent(LoginActivity.this, RegisterActivity.class);
+                        Intent indexActivity = new Intent(LoginActivity_With_Broadcast_Registration.this, RegisterActivity.class);
                         startActivity(indexActivity);
                     } else {
                         phoneNumberText.setEnabled(true);
@@ -131,11 +175,11 @@ public class LoginActivity extends Activity {
 
 
     public void onForgotPassword(View v) {
-        startActivity(new Intent(LoginActivity.this, ForgotPasswordMobileActivity.class));
+        startActivity(new Intent(LoginActivity_With_Broadcast_Registration.this, ForgotPasswordMobileActivity.class));
     }
 
     public void onSignUpBtnClick(View v) {
-        startActivity(new Intent(LoginActivity.this, MobileSignupActivity.class));
+        startActivity(new Intent(LoginActivity_With_Broadcast_Registration.this, MobileSignupActivity.class));
     }
 
 }
