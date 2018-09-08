@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.practice.aravind.wahter.api.APIClient;
 import com.practice.aravind.wahter.api.APIInterface;
 import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.documents.UserMobileNumbers;
 import com.practice.aravind.wahter.util.WahterConstants;
+import com.practice.aravind.wahter.util.WahterUtility;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -35,10 +37,57 @@ public class MobileSignupActivity extends Activity {
         setContentView(R.layout.activity_signup_mobile);
         Button next = findViewById(R.id.next);
         Button previous = findViewById(R.id.previous);
+        phoneNumberText = (EditText) findViewById(R.id.phoneNumberSignUp);
+        if(getIntent().hasExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL))
+        if(getIntent().getBooleanExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL, false)){
+            phoneNumberText.setText(getIntent().getStringExtra(WahterConstants.PHONE_NUMBER));
+            phoneNumberText.setEnabled(false);
+            getIntent().removeExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL);
+
+            UserMobileNumbers userMobileNumbers = new UserMobileNumbers();
+            userMobileNumbers.setPhoneNumber(phoneNumberText.getText().toString().trim());
+            userMobileNumbers.setNumberVerified(true);
+            apiInterface = APIClient.getClient().create(APIInterface.class);
+            Call<Response> authenticateService = apiInterface.userMobileNumber(userMobileNumbers);
+            authenticateService.enqueue(new Callback<Response>() {
+                @Override
+                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+
+                    if (response.isSuccessful()) {
+                        WahterUtility.showToast(getApplicationContext(), response.body().getMessage());
+                        phoneNumberText.setEnabled(true);
+                    } else {
+                        Converter<ResponseBody, Response> converter
+                                = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
+                        Response errorResponse = null;
+                        try {
+                            errorResponse = converter.convert(response.errorBody());
+                            String textReceived = errorResponse.getMessage();
+                            WahterUtility.showToast(getApplicationContext(), textReceived);
+                            phoneNumberText.setEnabled(true);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Response> call, Throwable t) {
+                    //Logging goes here
+                    Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
+                    phoneNumberText.setEnabled(true);
+                    t.printStackTrace();
+                }
+            });
+
+        }
+
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                phoneNumberText = (EditText) findViewById(R.id.phoneNumberSignUp);
+
                 boolean isValidationSuccessful = true;
                 final String phoneNumber = phoneNumberText.getText().toString();
                 if (!isValidPhone(phoneNumber)) {
@@ -49,7 +98,7 @@ public class MobileSignupActivity extends Activity {
                     phoneNumberText.setEnabled(false);
                     apiInterface = APIClient.getClient().create(APIInterface.class);
 
-                    Call<Response> authenticateService = apiInterface.validatePhoneNumber(phoneNumber);
+                    Call<Response> authenticateService = apiInterface.validatePhoneNumberForSignUp(phoneNumber);
                     authenticateService.enqueue(new Callback<Response>() {
                         @Override
                         public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -76,14 +125,17 @@ public class MobileSignupActivity extends Activity {
                         }
 
                         private void processResponse(Response serviceResponse) {
-                            Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
+                            if(serviceResponse.getResponseCode().equalsIgnoreCase("001")){
+                                 Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
+                                startActivity(indexActivity);
+                            } else if(serviceResponse.getResponseCode().equalsIgnoreCase("002")) {
+                                //todo include authentication for registration
+                                Intent indexActivity = new Intent(MobileSignupActivity.this, OTPVerification.class);
+                                indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.MOBILE_SIGNUP_ACTIVITY);
+                                indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
+                                startActivity(indexActivity);
+                            }
 
-                            //todo include authentication for registration
-                            /*Intent indexActivity = new Intent(MobileSignupActivity.this, OTPVerification.class);
-                              indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.REGISTER_ACTIVITY);
-                            */
-                            indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
-                            startActivity(indexActivity);
                         }
 
                         @Override

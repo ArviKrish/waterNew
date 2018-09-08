@@ -63,6 +63,7 @@ public class OTPVerification extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(OTPVerification.this, nextActivity);
                             intent.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
+                            intent.putExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL, true);
                             startActivity(intent);
                         } else {
                             otpTxt.setEnabled(true);

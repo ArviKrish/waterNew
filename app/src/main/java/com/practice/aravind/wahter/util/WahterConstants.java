@@ -21,4 +21,6 @@ public class WahterConstants {
 
     public static final String  FORGOT_PASSWORD_ACTIVITY = "com.practice.aravind.wahter.ForgotPasswordNewAndConfirmActivity";
     public static final String REGISTER_ACTIVITY = "com.practice.aravind.wahter.RegisterActivity";
+    public static final String MOBILE_SIGNUP_ACTIVITY = "com.practice.aravind.wahter.MobileSignupActivity";
+    public static final String IS_OTP_VERIFICATION_SUCCESSFUL = "IS_OTP_VERIFICATION_SUCCESSFUL";
 }

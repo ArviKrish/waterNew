@@ -38,7 +38,7 @@ public class ForgotPasswordMobileActivity extends Activity {
         }
 
         phoneNumberTxt.setEnabled(false);
-        Call<Response> validateService = apiInterface.validatePhoneNumber(phoneNumber);
+        Call<Response> validateService = apiInterface.validatePhoneNumberForSignUp(phoneNumber);
         validateService.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {

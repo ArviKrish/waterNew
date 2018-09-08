@@ -1,6 +1,7 @@
 package com.practice.aravind.wahter.api;
 
 import com.practice.aravind.wahter.documents.Response;
+import com.practice.aravind.wahter.documents.UserMobileNumbers;
 import com.practice.aravind.wahter.documents.Users;
 
 import retrofit2.Call;
@@ -27,8 +28,11 @@ public interface APIInterface {
     Call<Response> createpotentialuser(@Body Users users);
 
 
-    @GET("/users/validatePhoneNumber?")
-    Call<Response> validatePhoneNumber(@Query("phoneNumber") String phoneNumber);
+    @GET("/users/validatePhoneNumberForSignUp?")
+    Call<Response> validatePhoneNumberForSignUp(@Query("phoneNumber") String phoneNumber);
+
+    @POST("/usermobilenumber")
+    Call<Response> userMobileNumber(@Body UserMobileNumbers userMobileNumbers);
 
     /*@FormUrlEncoded
     @POST("/api/users?")
