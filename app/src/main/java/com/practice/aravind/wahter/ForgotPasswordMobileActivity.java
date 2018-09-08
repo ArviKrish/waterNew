@@ -38,24 +38,24 @@ public class ForgotPasswordMobileActivity extends Activity {
         }
 
         phoneNumberTxt.setEnabled(false);
-        Call<Response> validateService = apiInterface.validatePhoneNumberForSignUp(phoneNumber);
+        Call<Response> validateService = apiInterface.validatePhoneNumber(phoneNumber);
         validateService.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (response.isSuccessful()) {
-                    processResponse(response.body());
-                } else {
-                    Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, OTPVerification.class);
-                    indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
-                    indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.FORGOT_PASSWORD_ACTIVITY);
-                    startActivity(indexActivity);
-                }
-            }
+                    if(response.body().getResponseCode().equalsIgnoreCase("001")) {
+                        Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, OTPVerification.class);
+                        indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
+                        indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.FORGOT_PASSWORD_ACTIVITY);
+                        startActivity(indexActivity);
+                    } else if(response.body().getResponseCode().equalsIgnoreCase("002")){
+                        WahterUtility.showToast(getApplicationContext(), "Incorrect Phone Number");
+                    }
 
-            private void processResponse(Response serviceResponse) {
-                String textReceived = serviceResponse.getMessage();
-                WahterUtility.showToast(getApplicationContext(),textReceived);
-                phoneNumberTxt.setEnabled(true);
+                } else {
+                    WahterUtility.showToast(getApplicationContext(), "Password cannot be reset now");
+                    phoneNumberTxt.setEnabled(true);
+                }
             }
 
             @Override

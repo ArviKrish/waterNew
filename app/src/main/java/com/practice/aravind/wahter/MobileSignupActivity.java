@@ -98,7 +98,7 @@ public class MobileSignupActivity extends Activity {
                     phoneNumberText.setEnabled(false);
                     apiInterface = APIClient.getClient().create(APIInterface.class);
 
-                    Call<Response> authenticateService = apiInterface.validatePhoneNumberForSignUp(phoneNumber);
+                    Call<Response> authenticateService = apiInterface.validatePhoneNumber(phoneNumber);
                     authenticateService.enqueue(new Callback<Response>() {
                         @Override
                         public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -112,9 +112,7 @@ public class MobileSignupActivity extends Activity {
                                 try {
                                     errorResponse = converter.convert(response.errorBody());
                                     String textReceived = errorResponse.getMessage();
-                                    Toast toast = Toast.makeText(getApplicationContext(), textReceived, Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 250);
-                                    toast.show();
+                                    WahterUtility.showToast(getApplicationContext(), textReceived);
                                     phoneNumberText.setEnabled(true);
 
                                 } catch (IOException e) {

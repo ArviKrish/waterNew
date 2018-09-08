@@ -28,8 +28,8 @@ public interface APIInterface {
     Call<Response> createpotentialuser(@Body Users users);
 
 
-    @GET("/users/validatePhoneNumberForSignUp?")
-    Call<Response> validatePhoneNumberForSignUp(@Query("phoneNumber") String phoneNumber);
+    @GET("/users/validatePhoneNumber?")
+    Call<Response> validatePhoneNumber(@Query("phoneNumber") String phoneNumber);
 
     @POST("/usermobilenumber")
     Call<Response> userMobileNumber(@Body UserMobileNumbers userMobileNumbers);
