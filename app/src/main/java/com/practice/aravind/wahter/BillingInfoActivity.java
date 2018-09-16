@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class BillingInfoActivity extends AppCompatActivity {
 
@@ -42,8 +43,8 @@ public class BillingInfoActivity extends AppCompatActivity {
         userEmail = signUpBundle.getString("userEmail");
 */
 
-        Button previousBtn = findViewById(R.id.previousBtn);
-        Button nextBtn = findViewById(R.id.nextBtn);
+        ImageButton previousBtn = findViewById(R.id.previousBtn);
+        ImageButton nextBtn = findViewById(R.id.nextBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button

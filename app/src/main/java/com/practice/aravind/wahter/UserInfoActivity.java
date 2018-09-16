@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class UserInfoActivity extends AppCompatActivity {
@@ -30,8 +31,8 @@ public class UserInfoActivity extends AppCompatActivity {
         companyEmail = signUpBundle.getString("companyEmail");
         mobileNumber = signUpBundle.getString("mobileNumber");*/
 
-        Button previousBtn = findViewById(R.id.previousBtn);
-        Button nextBtn = findViewById(R.id.nextBtn);
+        ImageButton previousBtn = findViewById(R.id.previousBtn);
+        ImageButton nextBtn = findViewById(R.id.nextBtn);
 
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

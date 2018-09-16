@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class RegisterActivity extends Activity {
     String mobileNumber;
@@ -17,8 +18,8 @@ public class RegisterActivity extends Activity {
         final Bundle signUpBundle = getIntent().getExtras();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Button previousBtn = findViewById(R.id.companyPreviousBtn);
-        Button nextBtn = findViewById(R.id.companyNextBtn);
+        ImageButton previousBtn = findViewById(R.id.companyPreviousBtn);
+        ImageButton nextBtn = findViewById(R.id.companyNextBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button

@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,8 +36,8 @@ public class MobileSignupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_mobile);
-        Button next = findViewById(R.id.next);
-        Button previous = findViewById(R.id.previous);
+        ImageButton next = findViewById(R.id.next);
+        ImageButton previous = findViewById(R.id.previous);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberSignUp);
         if(getIntent().hasExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL))
         if(getIntent().getBooleanExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL, false)){

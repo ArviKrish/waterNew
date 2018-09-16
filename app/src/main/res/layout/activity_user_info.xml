@@ -153,7 +153,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     android:background="@color/cardview_shadow_end_color"
-                    app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
+                    android:src="@drawable/ic_chevron_left_black_24dp" />
 
                 <ImageButton
                     android:id="@+id/nextBtn"
@@ -164,7 +164,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     android:background="@color/cardview_shadow_end_color"
-                    app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+                    android:src="@drawable/ic_chevron_right_black_24dp" />
             </android.support.constraint.ConstraintLayout>
 
 

@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.practice.aravind.wahter.api.APIClient;
@@ -35,7 +36,7 @@ public class DeliveryInfoActivity extends AppCompatActivity {
         final Bundle signUpBundle = getIntent().getExtras();
         setContentView(R.layout.activity_delivery_info);
         Button submitBtn = findViewById(R.id.submitBtn);
-        Button previousBtn = findViewById(R.id.previousBtn);
+        ImageButton previousBtn = findViewById(R.id.previousBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
