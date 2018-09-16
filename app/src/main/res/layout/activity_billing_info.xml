@@ -22,16 +22,21 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/cardbackground"
         android:foregroundGravity="center"
         android:theme="@style/Theme.AppCompat.Light"
-        app:cardElevation="21dp"
+        app:cardBackgroundColor="@android:color/background_light"
+
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
         app:contentPadding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h,2:3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_max="wrap">
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -119,34 +124,31 @@
                      app:layout_constraintStart_toEndOf="@+id/imageButton"
                      app:layout_constraintTop_toTopOf="parent"
                      app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />-->
-                <Button
+                <ImageButton
                     android:id="@+id/previousBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
-                    android:text="Previous"
+                    android:background="@color/cardview_shadow_end_color"
+
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button3"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.496" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/nextBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="next"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.496" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
             </android.support.constraint.ConstraintLayout>
 
 

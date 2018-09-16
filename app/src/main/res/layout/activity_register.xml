@@ -34,20 +34,25 @@
         android:id="@+id/cardView2"
         style="@style/Theme.AppCompat.Light"
         android:layout_width="291dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="420dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:foregroundGravity="center"
-        android:theme="@style/Theme.AppCompat.Light"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardCornerRadius="8dp"
         app:cardElevation="21dp"
-        app:contentPadding="20dp"
+        app:contentPadding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h,2:3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_max="wrap">
+
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -69,7 +74,7 @@
 
             <EditText
                 android:id="@+id/companyName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Name"
@@ -78,7 +83,7 @@
 
             <EditText
                 android:id="@+id/companyType"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="select type"
@@ -87,7 +92,7 @@
 
             <EditText
                 android:id="@+id/companyOption"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Drive through"
@@ -96,7 +101,7 @@
 
             <EditText
                 android:id="@+id/companyEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Email Id"
@@ -143,34 +148,29 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />-->
 
-                <Button
+                <ImageButton
                     android:id="@+id/companyPreviousBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
-                    android:text="Previous"
+                    android:background="@color/cardview_shadow_end_color"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button3"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.496" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/companyNextBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="next"
+                    android:background="@color/cardview_shadow_end_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.496" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
             </android.support.constraint.ConstraintLayout>
 
 

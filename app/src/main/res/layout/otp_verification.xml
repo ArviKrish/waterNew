@@ -40,7 +40,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:theme="@style/Theme.AppCompat.Light"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="8dp"
         app:contentPadding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +72,7 @@
                 android:layout_gravity="center_vertical|center"
                 android:ems="10"
                 android:hint="OTP"
+                android:layout_margin="20dp"
                 android:inputType="phone"
                 android:theme="@style/Theme.AppCompat.Light" />
 
@@ -82,11 +83,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:background="#348089"
+                android:background="@color/colorAccent"
                 android:onClick="onForgotPasswordOTP"
                 android:text="Next"
+                android:layout_margin="20dp"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textColor="@android:color/background_light"
                 android:theme="@style/Theme.AppCompat.Light"
                 tools:text="Next" />
 
