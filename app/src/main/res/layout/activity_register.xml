@@ -150,8 +150,8 @@
 
                 <ImageButton
                     android:id="@+id/companyPreviousBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="59dp"
+                    android:layout_height="41dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/cardview_shadow_end_color"
@@ -163,8 +163,8 @@
 
                 <ImageButton
                     android:id="@+id/companyNextBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="59dp"
+                    android:layout_height="41dp"
                     android:background="@color/cardview_shadow_end_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

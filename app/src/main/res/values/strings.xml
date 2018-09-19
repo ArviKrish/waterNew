@@ -38,5 +38,6 @@
     <string name="register">Register</string>
     <string name="tamil_nadu">Tamil Nadu</string>
     <string name="title_activity_notification_view">NotificationView</string>
+    <string name="title_activity_conditioal">Type of User</string>
 
 </resources>
