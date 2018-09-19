@@ -32,6 +32,7 @@ public class OTPVerification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otp_verification);
+        otpTxt = findViewById(R.id.otpTxt);
         phoneNumber = getIntent().getStringExtra(WahterConstants.PHONE_NUMBER);
         nextActivity = WahterUtility.getClass(getIntent().getStringExtra(WahterConstants.NEXT_ACTIVITY));
         mAuth = FirebaseAuth.getInstance();
@@ -39,7 +40,6 @@ public class OTPVerification extends AppCompatActivity {
     }
 
     public void onForgotPasswordOTP(View v) {
-        otpTxt = findViewById(R.id.otpTxt);
         final String otp = otpTxt.getText().toString().trim();
         if (!WahterUtility.isValidOTP(otp)) {
             otpTxt.setError(WahterConstants.INVALID_OTP);

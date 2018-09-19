@@ -50,12 +50,13 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
             isValidationSuccessful = false;
             newPasswordTxt.setError(WahterConstants.INVALID_PASSWORD);
             newPasswordTxt.requestFocus();
+            return;
         }
-        if (!WahterUtility.checkforSame(newPassword, confirmPassword)) {
+        if (!WahterUtility.checkforSamePassword(newPassword, confirmPassword)) {
             isValidationSuccessful = false;
             WahterUtility.showToast(getApplicationContext(), WahterConstants.PASSWORD_CONFIRM_ERROR);
             confirmPasswordTxt.requestFocus();
-            return;
+            //return;
         }
         if (!isValidationSuccessful) {
             return;

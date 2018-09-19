@@ -85,5 +85,10 @@ public class WahterUtility {
         return false;
     }
 
+    public static boolean checkforSamePassword(String first, String second) {
+        if (first.equals(second))
+            return true;
+        return false;
+    }
 
 }
