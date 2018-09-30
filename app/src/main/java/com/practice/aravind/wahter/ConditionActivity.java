@@ -1,4 +1,4 @@
-package com.practice.aravind.wahter.util;
+package com.practice.aravind.wahter;
 
 import android.content.Intent;
 import android.os.Bundle;
