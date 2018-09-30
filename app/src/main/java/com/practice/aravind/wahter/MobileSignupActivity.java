@@ -28,9 +28,9 @@ import retrofit2.Converter;
 
 public class MobileSignupActivity extends Activity {
 
-    private ProgressBar spinner;
     EditText phoneNumberText;
     APIInterface apiInterface;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,51 +39,51 @@ public class MobileSignupActivity extends Activity {
         ImageButton next = findViewById(R.id.next);
         ImageButton previous = findViewById(R.id.previous);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberSignUp);
-        if(getIntent().hasExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL))
-        if(getIntent().getBooleanExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL, false)){
-            phoneNumberText.setText(getIntent().getStringExtra(WahterConstants.PHONE_NUMBER));
-            phoneNumberText.setEnabled(false);
-            getIntent().removeExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL);
+        if (getIntent().hasExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL))
+            if (getIntent().getBooleanExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL, false)) {
+                phoneNumberText.setText(getIntent().getStringExtra(WahterConstants.PHONE_NUMBER));
+                phoneNumberText.setEnabled(false);
+                getIntent().removeExtra(WahterConstants.IS_OTP_VERIFICATION_SUCCESSFUL);
 
-            UserMobileNumbers userMobileNumbers = new UserMobileNumbers();
-            userMobileNumbers.setPhoneNumber(phoneNumberText.getText().toString().trim());
-            userMobileNumbers.setNumberVerified(true);
-            apiInterface = APIClient.getClient().create(APIInterface.class);
-            Call<Response> authenticateService = apiInterface.userMobileNumber(userMobileNumbers);
-            authenticateService.enqueue(new Callback<Response>() {
-                @Override
-                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                UserMobileNumbers userMobileNumbers = new UserMobileNumbers();
+                userMobileNumbers.setPhoneNumber(phoneNumberText.getText().toString().trim());
+                userMobileNumbers.setNumberVerified(true);
+                apiInterface = APIClient.getClient().create(APIInterface.class);
+                Call<Response> authenticateService = apiInterface.userMobileNumber(userMobileNumbers);
+                authenticateService.enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
-                    if (response.isSuccessful()) {
-                        WahterUtility.showToast(getApplicationContext(), response.body().getMessage());
-                        phoneNumberText.setEnabled(true);
-                    } else {
-                        Converter<ResponseBody, Response> converter
-                                = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
-                        Response errorResponse = null;
-                        try {
-                            errorResponse = converter.convert(response.errorBody());
-                            String textReceived = errorResponse.getMessage();
-                            WahterUtility.showToast(getApplicationContext(), textReceived);
+                        if (response.isSuccessful()) {
+                            WahterUtility.showToast(getApplicationContext(), response.body().getMessage());
                             phoneNumberText.setEnabled(true);
+                        } else {
+                            Converter<ResponseBody, Response> converter
+                                    = APIClient.getClient().responseBodyConverter(Response.class, (Annotation[]) new Annotation[0]);
+                            Response errorResponse = null;
+                            try {
+                                errorResponse = converter.convert(response.errorBody());
+                                String textReceived = errorResponse.getMessage();
+                                WahterUtility.showToast(getApplicationContext(), textReceived);
+                                phoneNumberText.setEnabled(true);
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
+
                     }
 
-                }
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+                        //Logging goes here
+                        Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
+                        phoneNumberText.setEnabled(true);
+                        t.printStackTrace();
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<Response> call, Throwable t) {
-                    //Logging goes here
-                    Toast.makeText(getApplicationContext(), "Unable to connect to server", Toast.LENGTH_LONG).show();
-                    phoneNumberText.setEnabled(true);
-                    t.printStackTrace();
-                }
-            });
-
-        }
+            }
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -124,10 +124,10 @@ public class MobileSignupActivity extends Activity {
                         }
 
                         private void processResponse(Response serviceResponse) {
-                            if(serviceResponse.getResponseCode().equalsIgnoreCase("001")){
-                                 Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
+                            if (serviceResponse.getResponseCode().equalsIgnoreCase("001")) {
+                                Intent indexActivity = new Intent(MobileSignupActivity.this, RegisterActivity.class);
                                 startActivity(indexActivity);
-                            } else if(serviceResponse.getResponseCode().equalsIgnoreCase("002")) {
+                            } else if (serviceResponse.getResponseCode().equalsIgnoreCase("002")) {
                                 //todo include authentication for registration
                                 Intent indexActivity = new Intent(MobileSignupActivity.this, OTPVerification.class);
                                 indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.MOBILE_SIGNUP_ACTIVITY);

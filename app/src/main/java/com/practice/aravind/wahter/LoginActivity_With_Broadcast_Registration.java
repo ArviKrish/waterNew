@@ -26,14 +26,13 @@ import retrofit2.Callback;
 
 public class LoginActivity_With_Broadcast_Registration extends Activity {
 
+    ConnectionReceiver receiver;
+    IntentFilter intentFilter;
     private ProgressBar spinner;
     private EditText phoneNumberText;
     private EditText passwordText;
     private APIInterface apiInterface;
     private ConstraintLayout constraintLayout;
-
-    ConnectionReceiver receiver;
-    IntentFilter intentFilter;
 
     @Override
     protected void onResume() {
@@ -59,12 +58,11 @@ public class LoginActivity_With_Broadcast_Registration extends Activity {
         intentFilter = new IntentFilter("com.practice.aravind.wahter.LoginActivity");
 
 
-
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(LoginActivity_With_Broadcast_Registration.this,
                 Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
-                System.out.println("X");
+            System.out.println("X");
             // Permission is not granted
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity_With_Broadcast_Registration.this,
@@ -93,7 +91,6 @@ public class LoginActivity_With_Broadcast_Registration extends Activity {
         }
 
 
-
     }
 
     public void onLogin(View v) {
@@ -117,61 +114,60 @@ public class LoginActivity_With_Broadcast_Registration extends Activity {
         if (!isValidationSuccessful) {
             return;
         }
-            spinner.setVisibility(View.VISIBLE);
-            phoneNumberText.setEnabled(false);
-            passwordText.setEnabled(false);
+        spinner.setVisibility(View.VISIBLE);
+        phoneNumberText.setEnabled(false);
+        passwordText.setEnabled(false);
 
-            apiInterface = APIClient.getClient().create(APIInterface.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
-            Call<Response> authenticateService = apiInterface.authenticateUser(phoneNumber, password);
-            authenticateService.enqueue(new Callback<Response>() {
-                @Override
-                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+        Call<Response> authenticateService = apiInterface.authenticateUser(phoneNumber, password);
+        authenticateService.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
 
-                    if (response.isSuccessful()) {
-                        processResponse(response.body());
-                    } else {
-                        Response errorResponse = WahterUtility.extractError(response);
-                        processResponse(errorResponse);
-                    }
+                if (response.isSuccessful()) {
+                    processResponse(response.body());
+                } else {
+                    Response errorResponse = WahterUtility.extractError(response);
+                    processResponse(errorResponse);
                 }
+            }
 
-                private void processResponse(Response serviceResponse) {
+            private void processResponse(Response serviceResponse) {
 
-                    String textReceived = serviceResponse.getMessage();
-                    WahterUtility.showToast(getApplicationContext(),textReceived);
-                    if (serviceResponse.getResponseCode().equalsIgnoreCase(WahterConstants.ERROR_CODE_001)) {
-                        Intent indexActivity = new Intent(LoginActivity_With_Broadcast_Registration.this, RegisterActivity.class);
-                        startActivity(indexActivity);
-                    } else {
-                        phoneNumberText.setEnabled(true);
-                        passwordText.setEnabled(true);
-                        passwordText.setText(WahterConstants.EMPTY_STRING);
-                        spinner.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Response> call, Throwable t) {
-                    //todo logging
-                    View.OnClickListener listener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            WahterUtility.showToast(getApplicationContext(),"To be implemented");
-                        }
-                    };
-                    WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.RETRY, listener);
-                    //WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.EMPTY_STRING, null);
+                String textReceived = serviceResponse.getMessage();
+                WahterUtility.showToast(getApplicationContext(), textReceived);
+                if (serviceResponse.getResponseCode().equalsIgnoreCase(WahterConstants.ERROR_CODE_001)) {
+                    Intent indexActivity = new Intent(LoginActivity_With_Broadcast_Registration.this, RegisterActivity.class);
+                    startActivity(indexActivity);
+                } else {
                     phoneNumberText.setEnabled(true);
                     passwordText.setEnabled(true);
                     passwordText.setText(WahterConstants.EMPTY_STRING);
                     spinner.setVisibility(View.GONE);
-                    t.printStackTrace();
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<Response> call, Throwable t) {
+                //todo logging
+                View.OnClickListener listener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        WahterUtility.showToast(getApplicationContext(), "To be implemented");
+                    }
+                };
+                WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.RETRY, listener);
+                //WahterUtility.showSnackBar(constraintLayout, WahterConstants.CONNECTION_ERROR, WahterConstants.EMPTY_STRING, null);
+                phoneNumberText.setEnabled(true);
+                passwordText.setEnabled(true);
+                passwordText.setText(WahterConstants.EMPTY_STRING);
+                spinner.setVisibility(View.GONE);
+                t.printStackTrace();
+            }
+        });
 
     }
-
 
 
     public void onForgotPassword(View v) {

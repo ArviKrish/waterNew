@@ -72,16 +72,16 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme">
 
-            <EditText
-                android:id="@+id/otpTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center"
-                android:ems="10"
-                android:hint="OTP"
-                android:layout_margin="20dp"
-                android:inputType="phone"
-                android:theme="@style/Theme.AppCompat.Light" />
+                <EditText
+                    android:id="@+id/otpTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center"
+                    android:layout_margin="20dp"
+                    android:ems="10"
+                    android:hint="OTP"
+                    android:inputType="phone"
+                    android:theme="@style/Theme.AppCompat.Light" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -91,10 +91,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
+                android:layout_margin="20dp"
                 android:background="@color/colorAccent"
                 android:onClick="onForgotPasswordOTP"
                 android:text="Next"
-                android:layout_margin="20dp"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:textColor="@android:color/background_light"

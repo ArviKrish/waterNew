@@ -43,7 +43,7 @@ public class ForgotPasswordMobileActivity extends Activity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (response.isSuccessful()) {
-                    if(response.body().getResponseCode().equalsIgnoreCase("002")){
+                    if (response.body().getResponseCode().equalsIgnoreCase("002")) {
                         WahterUtility.showToast(getApplicationContext(), "Incorrect Phone Number");
                         phoneNumberTxt.setEnabled(true);
                     } else {
@@ -52,13 +52,12 @@ public class ForgotPasswordMobileActivity extends Activity {
                     }
                 } else {
                     Response errorResponse = WahterUtility.extractError(response);
-                    if(errorResponse.getResponseCode().equalsIgnoreCase("1101")) {
+                    if (errorResponse.getResponseCode().equalsIgnoreCase("1101")) {
                         Intent indexActivity = new Intent(ForgotPasswordMobileActivity.this, OTPVerification.class);
                         indexActivity.putExtra(WahterConstants.PHONE_NUMBER, phoneNumber);
                         indexActivity.putExtra(WahterConstants.NEXT_ACTIVITY, WahterConstants.FORGOT_PASSWORD_ACTIVITY);
                         startActivity(indexActivity);
-                    }
-                   else {
+                    } else {
                         WahterUtility.showToast(getApplicationContext(), "Password cannot be reset now");
                         phoneNumberTxt.setEnabled(true);
                     }
@@ -67,7 +66,7 @@ public class ForgotPasswordMobileActivity extends Activity {
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
+                WahterUtility.showToast(getApplicationContext(), WahterConstants.CONNECTION_ERROR);
                 phoneNumberTxt.setEnabled(true);
                 t.printStackTrace();
             }

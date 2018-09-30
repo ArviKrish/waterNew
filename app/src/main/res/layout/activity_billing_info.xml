@@ -70,7 +70,7 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="25dp"
                     android:text="Cash On Delivery"
-                    android:theme="@style/SCBSwitch"/>
+                    android:theme="@style/SCBSwitch" />
 
                 <Switch
                     android:id="@+id/switch2"
@@ -80,7 +80,7 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="25dp"
                     android:text="Monthly"
-                    android:theme="@style/SCBSwitch"/>
+                    android:theme="@style/SCBSwitch" />
 
 
             </RadioGroup>

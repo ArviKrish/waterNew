@@ -22,8 +22,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        app:cardCornerRadius="8dp"
         android:foregroundGravity="center"
+        app:cardCornerRadius="8dp"
         app:cardElevation="21dp"
         app:contentPadding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,14 +58,14 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme">
 
-            <EditText
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName"
-                android:paddingBottom="10dp" />
+                <EditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="10dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -75,15 +75,15 @@
                 android:theme="@style/AppTheme">
 
 
-            <EditText
-                android:id="@+id/userDesignation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Designation"
-                android:inputType="textPersonName"
-                android:paddingBottom="10dp"
-                android:paddingTop="25dp" />
+                <EditText
+                    android:id="@+id/userDesignation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Designation"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="25dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -93,15 +93,15 @@
                 android:theme="@style/AppTheme">
 
 
-            <EditText
-                android:id="@+id/userPhoneNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Phone  Number"
-                android:inputType="phone"
-                android:paddingBottom="10dp"
-                android:paddingTop="25dp" />
+                <EditText
+                    android:id="@+id/userPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Phone  Number"
+                    android:inputType="phone"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="25dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -111,15 +111,15 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme">
 
-            <EditText
-                android:id="@+id/UserAltNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Alternate Phone Number"
-                android:inputType="phone"
-                android:paddingBottom="10dp"
-                android:paddingTop="25dp" />
+                <EditText
+                    android:id="@+id/UserAltNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Alternate Phone Number"
+                    android:inputType="phone"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="25dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -130,15 +130,15 @@
                 android:theme="@style/AppTheme">
 
 
-            <EditText
-                android:id="@+id/userEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:paddingBottom="10dp"
-                android:paddingTop="25dp" />
+                <EditText
+                    android:id="@+id/userEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="25dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -189,23 +189,23 @@
                     android:layout_height="41dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:src="@drawable/ic_chevron_left_black_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:src="@drawable/ic_chevron_left_black_24dp" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <ImageButton
                     android:id="@+id/nextBtn"
                     android:layout_width="59dp"
                     android:layout_height="41dp"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:src="@drawable/ic_chevron_right_black_24dp" />
+                    app:layout_constraintVertical_bias="1.0" />
             </android.support.constraint.ConstraintLayout>
 
 

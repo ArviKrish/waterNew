@@ -13,13 +13,13 @@ import com.practice.aravind.wahter.UserInfoActivity;
 public class ConditionActivity extends AppCompatActivity {
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
 
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_condition);
-            final Bundle signUpBundle = getIntent().getExtras();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_condition);
+        final Bundle signUpBundle = getIntent().getExtras();
 
        /* companyName = signUpBundle.getString("companyName");
         companyType = signUpBundle.getString("companyType");
@@ -34,8 +34,5 @@ public class ConditionActivity extends AppCompatActivity {
 */
 
 
-
-
-
-        }
     }
+}

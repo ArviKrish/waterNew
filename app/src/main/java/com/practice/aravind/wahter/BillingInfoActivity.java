@@ -22,7 +22,6 @@ public class BillingInfoActivity extends AppCompatActivity {
     String userEmail;*/
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -62,7 +62,7 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
             return;
         }
 
-        if(FirebaseAuth.getInstance().getCurrentUser() !=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             if (!WahterUtility.checkforSame(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber(), WahterConstants.COUNTRY_CODE + phoneNumber)) {
                 WahterUtility.showToast(getApplicationContext(), "Please Try Again...");
                 FirebaseAuth.getInstance().signOut();
@@ -99,7 +99,7 @@ public class ForgotPasswordNewAndConfirmActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                WahterUtility.showToast(getApplicationContext(),WahterConstants.CONNECTION_ERROR);
+                WahterUtility.showToast(getApplicationContext(), WahterConstants.CONNECTION_ERROR);
                 newPasswordTxt.setEnabled(true);
                 confirmPasswordTxt.setEnabled(true);
                 t.printStackTrace();

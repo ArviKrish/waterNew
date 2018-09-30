@@ -27,6 +27,31 @@ public class OTPVerification extends AppCompatActivity {
     private String phoneNumber;
     private String verificationId;
     private Class nextActivity;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onCodeSent(String verificationIdReceived, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(verificationIdReceived, forceResendingToken);
+            verificationId = verificationIdReceived;
+        }
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            String otp = phoneAuthCredential.getSmsCode();
+            if (!otp.isEmpty()) {
+                otpTxt.setText(otp);
+                verifyCode(otp);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            WahterUtility.showToast(OTPVerification.this, WahterConstants.OTP_FAILED);
+            otpTxt.setEnabled(true);
+            e.printStackTrace();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,32 +99,6 @@ public class OTPVerification extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber,WahterConstants.LONG_60, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD, mCallBack);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber, WahterConstants.LONG_60, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD, mCallBack);
     }
-
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        @Override
-        public void onCodeSent(String verificationIdReceived, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(verificationIdReceived, forceResendingToken);
-            verificationId = verificationIdReceived;
-        }
-
-        @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            String otp = phoneAuthCredential.getSmsCode();
-            if (!otp.isEmpty()) {
-                otpTxt.setText(otp);
-                verifyCode(otp);
-            }
-        }
-
-        @Override
-        public void onVerificationFailed(FirebaseException e) {
-            WahterUtility.showToast(OTPVerification.this, WahterConstants.OTP_FAILED);
-            otpTxt.setEnabled(true);
-            e.printStackTrace();
-        }
-    };
 }
