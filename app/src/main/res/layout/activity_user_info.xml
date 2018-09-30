@@ -42,7 +42,7 @@
 
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/UserInfoTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="25dp"
@@ -52,6 +52,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/userName_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="match_parent"
@@ -60,6 +66,14 @@
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:paddingBottom="10dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/userDesignation_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+
 
             <EditText
                 android:id="@+id/userDesignation"
@@ -70,6 +84,14 @@
                 android:inputType="textPersonName"
                 android:paddingBottom="10dp"
                 android:paddingTop="25dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/userPhoneNumber_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+
 
             <EditText
                 android:id="@+id/userPhoneNumber"
@@ -81,6 +103,14 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="25dp" />
 
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/UserAltNumber_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+
             <EditText
                 android:id="@+id/UserAltNumber"
                 android:layout_width="match_parent"
@@ -91,6 +121,15 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="25dp" />
 
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/userEmail_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+
+
             <EditText
                 android:id="@+id/userEmail"
                 android:layout_width="match_parent"
@@ -100,6 +139,8 @@
                 android:inputType="textEmailAddress"
                 android:paddingBottom="10dp"
                 android:paddingTop="25dp" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
             <android.support.constraint.ConstraintLayout

@@ -56,7 +56,7 @@
             android:paddingTop="17dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/otptitle"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:text="Enter OTP"
@@ -64,6 +64,13 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="Enter OTP" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/otpTxt_text_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
 
             <EditText
                 android:id="@+id/otpTxt"
@@ -76,6 +83,7 @@
                 android:inputType="phone"
                 android:theme="@style/Theme.AppCompat.Light" />
 
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/forgotpasswordmobileBtn"

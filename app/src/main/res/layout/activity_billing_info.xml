@@ -45,7 +45,7 @@
 
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/billingInfoTile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="25dp"
@@ -69,7 +69,8 @@
                     android:layout_weight="1"
                     android:paddingBottom="10dp"
                     android:paddingTop="25dp"
-                    android:text="Cash On Delivery" />
+                    android:text="Cash On Delivery"
+                    android:theme="@style/SCBSwitch"/>
 
                 <Switch
                     android:id="@+id/switch2"
@@ -78,7 +79,8 @@
                     android:layout_weight="1"
                     android:paddingBottom="10dp"
                     android:paddingTop="25dp"
-                    android:text="Monthly" />
+                    android:text="Monthly"
+                    android:theme="@style/SCBSwitch"/>
 
 
             </RadioGroup>
